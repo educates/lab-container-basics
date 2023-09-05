@@ -8,6 +8,8 @@ The normal way to distribute container images is to push them up to an image reg
 
 To push an image to an image registry, you would first need to login to that image registry.
 
+{{< registry-available >}}
+
 In this workshop environment you have your own private image registry to which you have already been logged in. If you had to do it yourself you would use the ``docker login`` command, giving it the location of the image registry. You would then be prompted for the login credentials.
 
 The next step is that you need to tag your container image with a name that incorporates the name of the image registry.
@@ -31,3 +33,41 @@ Anyone with the appropriate access to the image registry could now pull it down 
 ```execute
 docker pull {{% param registry_host %}}/greeting:latest
 ```
+
+{{< /registry-available >}}
+
+{{< registry-unavailable >}}
+
+If you were using Docker Hub you could do this by running:
+
+```
+docker login -u username
+```
+
+It is not necessary to specify the server for Docker Hub in this case as the `docker` command defaults to using it when no alternate image registry is specified.
+
+The next step is that you need to tag your container image with a name that incorporates the name of the image registry.
+
+The name of your image at this point is ``greeting``, so to tag it with a name including the name of the image registry, you would run:
+
+```
+docker tag greeting:latest username/greeting:latest
+```
+
+Again, it is not necessary to specify the server for Docker Hub. If you were using an alternate image registry you would need to prefix your `username` value with the registry name.
+
+To push the image to the image registry, you would then run:
+
+```
+docker push username/greeting:latest
+```
+
+The command works out which image registry to push it to from the tag you added which includes the registry name, or Docker Hub when not supplied.
+
+Anyone with the appropriate access to the image registry could now pull it down to a different host by running:
+
+```
+docker pull username/greeting:latest
+```
+
+{{< /registry-unavailable >}}

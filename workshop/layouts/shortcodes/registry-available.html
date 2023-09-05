@@ -1,0 +1,3 @@
+{{ if ne $.Page.Site.Params.registry_host "" }}
+{{- .Inner | markdownify }}
+{{ end }}
