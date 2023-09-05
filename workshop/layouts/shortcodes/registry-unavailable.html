@@ -1,3 +1,4 @@
-{{ if eq $.Page.Site.Params.registry_host "" }}
-{{- .Inner | markdownify }}
+{{ with .Site.Params.registry_host }}
+{{ else }}
+{{- $.Inner | markdownify }}
 {{ end }}
