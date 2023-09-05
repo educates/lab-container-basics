@@ -5,6 +5,7 @@ metadata:
 spec:
   title: Container Basics
   description: An interactive workshop on running applications in containers.
+  duration: 60m
   publish:
     image: "$(image_repository)/lab-container-basics-files:$(workshop_version)"
   workshop:
